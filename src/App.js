@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Page404 from './components/Page404'
-import index from './pages/index'
+import IndexPage from './pages/IndexPage'
 import DefaultLayout from './layout/DefaultLayout';
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
     <DefaultLayout>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<index />} />
+          <Route path="/" element={<IndexPage />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </BrowserRouter>
