@@ -10,6 +10,6 @@ margin:0 0.5rem;
 margin-left:auto;
 ${(props) => props.spacing ? "margin:10px;" : "margin-left:auto;"}
 &:hover{
-     background: var(--primary - color - hover);
+     background: var(--primary-color-hover);
 }`
 
