@@ -31,6 +31,12 @@ const SearchCharacter = ({ handleSearch, submitSearch }) => {
       <button className="px-4 py-2 text-sm text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700 active:shadow-lg">
         Search
       </button>
+      <button
+        onClick={() => window.location.reload(false)}
+        className="px-4 py-2 text-sm text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700 active:shadow-lg"
+      >
+        reset
+      </button>
     </form>
   );
 };
