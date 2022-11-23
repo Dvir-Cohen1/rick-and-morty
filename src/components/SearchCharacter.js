@@ -1,10 +1,11 @@
 import React from "react";
 
-const SearchCharacter = () => {
+const SearchCharacter = ({ handleSearch, submitSearch }) => {
   return (
     <form
-      onSubmit={(e) => e.preventDefault()}
-      className="max-w-md px-4 mx-auto mt-12"
+      onSubmit={submitSearch}
+      onChange={handleSearch}
+      className="max-w-md px-4 mx-auto mt-12 flex flex-row justify-evenly"
     >
       <div className="relative">
         <svg
@@ -27,6 +28,9 @@ const SearchCharacter = () => {
           className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50/25 focus:bg-white focus:border-indigo-600"
         />
       </div>
+      <button className="px-4 py-2 text-sm text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700 active:shadow-lg">
+        Search
+      </button>
     </form>
   );
 };
