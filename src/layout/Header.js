@@ -4,6 +4,12 @@ import { MainNavbar } from "../components/common/MainNavbar";
 import { Button } from "../components/common/Button";
 import morty from "../assets/images/rick.png";
 
+const navLinks = [
+  { id: 1, path: "/", lable: "Home" },
+  { id: 2, path: "/Characters", lable: "Characters" },
+  { id: 3, path: "/episodes", lable: "Episodes" },
+];
+
 function Header() {
   return (
     <MainNavbar>
@@ -11,21 +17,15 @@ function Header() {
         <img width="50px" src={morty} alt={"asd"}></img>
       </div>
       Rick & Morty
-      <Link className="mx-5 text-lg hover:border-b-2 border-blue-400" to="/">
-        Home
-      </Link>
-      <Link
-        className="mx-5 text-lg hover:border-b-2 border-blue-400"
-        to="/allCharacters"
-      >
-        Characters
-      </Link>
-      <Link
-        className="mx-5 text-lg hover:border-b-2 border-blue-400"
-        to="/episodes"
-      >
-        Episodes
-      </Link>
+      {navLinks.map((link, index) => (
+        <Link
+          key={index}
+          className="mx-5 text-lg hover:border-b-2 border-blue-400"
+          to={link.path}
+        >
+          {link.lable}
+        </Link>
+      ))}
       <Button>Download</Button>
     </MainNavbar>
   );
