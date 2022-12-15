@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const SearchCharacter = ({ handleSearch, submitSearch }) => {
   return (
     <form
@@ -28,12 +29,12 @@ const SearchCharacter = ({ handleSearch, submitSearch }) => {
           className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50/25 focus:bg-white focus:border-indigo-600"
         />
       </div>
-      <button className="px-4 py-2 text-sm text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700 active:shadow-lg">
+      <button className="px-4 py-2 text-sm text-white duration-150 bg-[var(--primary-color)] hover:bg-[var(--primary-color-hover)] rounded-md active:shadow-lg">
         Search
       </button>
       <button
         onClick={() => window.location.reload(false)}
-        className="px-4 py-2 text-sm text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700 active:shadow-lg"
+        className="px-4 py-2 text-sm text-white duration-150 bg-[var(--primary-color)] hover:bg-[var(--primary-color-hover)] rounded-md hover:bg-blue-700 active:shadow-lg"
       >
         reset
       </button>

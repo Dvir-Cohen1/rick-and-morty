@@ -42,11 +42,26 @@ export const searchCharacter = async (name) => {
   }
 };
 
-export async function FetchEpisodes(episodesList) {
+export async function fetchSingleEpisodes(episodesList) {
   try {
     const episodesNumbers = getEpisodesNumbersFromArray(episodesList);
     const res = await fetch(
       `${END_POINT}/episode/${episodesNumbers}`,
+      DEFAULT_OPTIONS
+    );
+    const { results: episodes } = await res.json();
+
+    return episodes;
+  } catch (error) {
+    return console.log(error);
+  }
+}
+
+export async function fetchAllEpisodes() {
+  try {
+
+    const res = await fetch(
+      `${END_POINT}/episode?page=1?page=2?page=3`,
       DEFAULT_OPTIONS
     );
     const { results: episodes } = await res.json();

@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { useLocation } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
-import Loader from "../components/Loader";
+import Loader from "../components/common/Loader";
 
-import { FetchEpisodes } from "../services/api";
+import { fetchSingleEpisodes, fetchAllEpisodes } from "../services/api";
 import {
   characterEpisodesColumns,
   characterEpisodesRow,
@@ -13,28 +14,52 @@ const EpisodesTable = ({ character }) => {
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const isEpisodesPage = useLocation().pathname === "/episodes" ? true : false;
+
   useEffect(() => {
     setLoading(true);
-    FetchEpisodes(character.episode)
-      .then((res) => {
-        setEpisodes((pre) => res);
+
+    async function fetch() {
+      try {
+        let response = isEpisodesPage
+          ? await fetchAllEpisodes()
+          : await fetchSingleEpisodes(character.episode);
+        setEpisodes(response);
         setLoading(false);
-      })
-      .catch((err) => {
+      } catch (error) {
         setHasError(true);
         setLoading(true);
-      });
+        throw Error(error);
+      }
+    }
+    fetch();
   }, []);
 
-  const fetchData = useCallback(async () => {
-    const data = await FetchEpisodes(character.episode);
-    setEpisodes(data);
-  }, []);
+  // useEffect(() => {
+  //   setLoading(true);
 
-  // the useEffect is only there to call `fetchData` at the right time
-  useEffect(() => {
-    fetchData().catch(console.error);
-  }, [fetchData]);
+  //   isEpisodesPage
+  //     ? fetchAllEpisodes()
+  //     : fetchSingleEpisodes(character.episode)
+  //         .then((res) => {
+  //           setEpisodes((pre) => res);
+  //           setLoading(false);
+  //         })
+  //         .catch((err) => {
+  //           setHasError(true);
+  //           setLoading(true);
+  //         });
+  // }, []);
+
+  // const fetchData = useCallback(async () => {
+  //   const data = await fetchSingleEpisodes(character.episode);
+  //   setEpisodes(data);
+  // }, []);
+
+  // // the useEffect is only there to call `fetchData` at the right time
+  // useEffect(() => {
+  //   fetchData().catch(console.error);
+  // }, [fetchData]);
 
   return (
     <div style={{ height: 600, width: "75%" }}>
